@@ -4,6 +4,7 @@ import 'package:ppkd_belajar/day_11/extension/navigator.dart';
 import 'package:ppkd_belajar/day_11/tugas11.dart';
 import 'package:ppkd_belajar/day_17/service/prefrence_handler.dart';
 import 'package:ppkd_belajar/day_17/views/login_day_17.dart';
+import 'package:ppkd_belajar/day_18/views/data_user.dart';
 import 'package:ppkd_belajar/day_9/day9.dart';
 import 'package:ppkd_belajar/day_9/tugas9.dart';
 
@@ -27,6 +28,7 @@ class _BottomnavDay13State extends State<BottomnavDay13> {
     Tugas11(),
     Tugas9(),
     LogoutScreen(),
+    DataUserDay18(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class _BottomnavDay13State extends State<BottomnavDay13> {
             icon: Icon(Icons.logout, color: Colors.black),
             label: 'Log Out',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User'),
         ],
       ),
       body: _widgetOptions.elementAt(_selectedBottom),
