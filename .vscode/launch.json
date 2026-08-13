@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ppkd_belajar",
+            "cwd": "ppkd_belajar_b3\\ppkd_belajar",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ppkd_belajar (profile mode)",
+            "cwd": "ppkd_belajar_b3\\ppkd_belajar",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ppkd_belajar (release mode)",
+            "cwd": "ppkd_belajar_b3\\ppkd_belajar",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "yayasan_kopia_raya_insani",
+            "cwd": "yayasan_kopia_raya_insani\\yayasan_kopia_raya_insani",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "yayasan_kopia_raya_insani (profile mode)",
+            "cwd": "yayasan_kopia_raya_insani\\yayasan_kopia_raya_insani",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "yayasan_kopia_raya_insani (release mode)",
+            "cwd": "yayasan_kopia_raya_insani\\yayasan_kopia_raya_insani",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

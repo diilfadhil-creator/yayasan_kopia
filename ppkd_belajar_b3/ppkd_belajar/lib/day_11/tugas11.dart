@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_belajar/day_13/bottomnav.dart';
 import 'package:ppkd_belajar/day_13/drawer.dart';
 
 class Tugas11 extends StatelessWidget {
@@ -117,7 +118,7 @@ class Tugas11 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DrawerDay13()),
+                      MaterialPageRoute(builder: (context) => BottomnavDay13()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
