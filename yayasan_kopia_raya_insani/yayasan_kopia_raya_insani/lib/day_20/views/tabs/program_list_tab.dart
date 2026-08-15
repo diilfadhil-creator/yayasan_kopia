@@ -283,20 +283,36 @@ class _ProgramListTabState extends State<ProgramListTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            program.imageUrl,
-            height: 160,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) => Container(
-              height: 160,
-              color: AppColors.secondaryContainer,
-              child: const Center(
-                child: Icon(Icons.image_not_supported_rounded,
-                    size: 48, color: AppColors.secondary),
-              ),
-            ),
-          ),
+          program.imageUrl.startsWith('http')
+              ? Image.network(
+                  program.imageUrl,
+                  height: 160,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 160,
+                    color: AppColors.secondaryContainer,
+                    child: const Center(
+                      child: Icon(Icons.image_not_supported_rounded,
+                          size: 48, color: AppColors.secondary),
+                    ),
+                  ),
+                )
+              : Image.asset(
+                  program.imageUrl,
+                  height: 160,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 160,
+                    color: AppColors.secondaryContainer,
+                    child: const Center(
+                      child: Icon(Icons.image_not_supported_rounded,
+                          size: 48, color: AppColors.secondary),
+                    ),
+                  ),
+                ),
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

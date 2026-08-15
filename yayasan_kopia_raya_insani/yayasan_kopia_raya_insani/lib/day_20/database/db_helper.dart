@@ -90,6 +90,64 @@ class DbHelper {
     return null;
   }
 
+  // Update User Profile
+  Future<bool> updateUserProfile({
+    required String oldEmail,
+    required String fullName,
+    required String newEmail,
+    required String phone,
+  }) async {
+    final db = await instance.database;
+    final normalizedOldEmail = oldEmail.trim().toLowerCase();
+    final normalizedNewEmail = newEmail.trim().toLowerCase();
+
+    // Check if changing email and new email already belongs to another user
+    if (normalizedOldEmail != normalizedNewEmail) {
+      final existingUser = await getUserByEmail(normalizedNewEmail);
+      if (existingUser != null) {
+        return false; // Email already in use by another user
+      }
+    }
+
+    final count = await db.update(
+      'users',
+      {
+        'fullName': fullName,
+        'email': normalizedNewEmail,
+        'phone': phone.trim(),
+      },
+      where: 'LOWER(email) = ?',
+      whereArgs: [normalizedOldEmail],
+    );
+
+    return count > 0;
+  }
+
+  // Update User Password
+  Future<bool> updateUserPassword({
+    required String email,
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    final db = await instance.database;
+    final normalizedEmail = email.trim().toLowerCase();
+
+    // Verify old password
+    final user = await loginUser(normalizedEmail, oldPassword);
+    if (user == null) {
+      return false; // Invalid old password
+    }
+
+    final count = await db.update(
+      'users',
+      {'password': newPassword},
+      where: 'LOWER(email) = ?',
+      whereArgs: [normalizedEmail],
+    );
+
+    return count > 0;
+  }
+
   // Get All Users (Utility)
   Future<List<UserModel>> getAllUsers() async {
     final db = await instance.database;

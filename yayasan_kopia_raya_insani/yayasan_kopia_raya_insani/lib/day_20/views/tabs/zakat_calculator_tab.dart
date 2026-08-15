@@ -42,7 +42,8 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
   }
 
   void _calculateZakatMaal() {
-    double harta = double.tryParse(_hartaController.text.replaceAll('.', '')) ?? 0;
+    double harta =
+        double.tryParse(_hartaController.text.replaceAll('.', '')) ?? 0;
     setState(() {
       _zakatMaalAmount = ZakatCalculator.calculateZakatMaal(harta);
     });
@@ -84,7 +85,9 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
           unselectedLabelColor: AppColors.onSurfaceVariant,
           indicatorColor: AppColors.primary,
           indicatorWeight: 3,
-          labelStyle: AppStyles.labelMedium.copyWith(fontWeight: FontWeight.bold),
+          labelStyle: AppStyles.labelMedium.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
           tabs: const [
             Tab(text: 'Zakat Maal'),
             Tab(text: 'Zakat Penghasilan'),
@@ -93,16 +96,14 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          _buildZakatMaalView(),
-          _buildZakatPenghasilanView(),
-        ],
+        children: [_buildZakatMaalView(), _buildZakatPenghasilanView()],
       ),
     );
   }
 
   Widget _buildZakatMaalView() {
-    double harta = double.tryParse(_hartaController.text.replaceAll('.', '')) ?? 0;
+    double harta =
+        double.tryParse(_hartaController.text.replaceAll('.', '')) ?? 0;
     bool reachesNisab = harta >= ZakatCalculator.nisabTahunan;
 
     return SingleChildScrollView(
@@ -120,7 +121,10 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
             ),
             child: Row(
               children: [
-                const Icon(Icons.info_outline_rounded, color: AppColors.primary),
+                const Icon(
+                  Icons.info_outline_rounded,
+                  color: AppColors.primary,
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -186,7 +190,9 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
                     Text('Status Nisab:', style: AppStyles.bodyMedium),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: reachesNisab
                             ? AppColors.tertiaryFixed
@@ -241,7 +247,10 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
                   child: ElevatedButton(
                     onPressed: _zakatMaalAmount > 0
                         ? () {
-                            _processZakatPayment(_zakatMaalAmount, 'Zakat Maal');
+                            _processZakatPayment(
+                              _zakatMaalAmount,
+                              'Zakat Maal',
+                            );
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -269,7 +278,9 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
   }
 
   Widget _buildZakatPenghasilanView() {
-    double totalNetto = (double.tryParse(_penghasilanController.text.replaceAll('.', '')) ?? 0) +
+    double totalNetto =
+        (double.tryParse(_penghasilanController.text.replaceAll('.', '')) ??
+            0) +
         (double.tryParse(_bonusController.text.replaceAll('.', '')) ?? 0) -
         (double.tryParse(_hutangController.text.replaceAll('.', '')) ?? 0);
     bool reachesNisab = totalNetto >= ZakatCalculator.nisabBulanan;
@@ -289,7 +300,10 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
             ),
             child: Row(
               children: [
-                const Icon(Icons.info_outline_rounded, color: AppColors.primary),
+                const Icon(
+                  Icons.info_outline_rounded,
+                  color: AppColors.primary,
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -413,7 +427,9 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
                     Text('Status Nisab:', style: AppStyles.bodyMedium),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                        horizontal: 20,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: reachesNisab
                             ? AppColors.tertiaryFixed
@@ -469,7 +485,9 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
                     onPressed: _zakatPenghasilanAmount > 0
                         ? () {
                             _processZakatPayment(
-                                _zakatPenghasilanAmount, 'Zakat Penghasilan');
+                              _zakatPenghasilanAmount,
+                              'Zakat Penghasilan',
+                            );
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -500,14 +518,19 @@ class _ZakatCalculatorTabState extends State<ZakatCalculatorTab>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-            'Alhamdulillah! Pembayaran $type sebesar Rp ${_formatRupiah(amount)} berhasil diproses.'),
+          'Alhamdulillah! Pembayaran $type sebesar Rp ${_formatRupiah(amount)} berhasil diproses.',
+        ),
         backgroundColor: AppColors.primary,
       ),
     );
   }
 
   String _formatRupiah(double amount) {
-    return amount.toStringAsFixed(0).replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.');
+    return amount
+        .toStringAsFixed(0)
+        .replaceAllMapped(
+          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (Match m) => '${m[1]}.',
+        );
   }
 }

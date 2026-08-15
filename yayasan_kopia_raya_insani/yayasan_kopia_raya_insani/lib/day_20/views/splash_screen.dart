@@ -119,21 +119,25 @@ class _SplashScreenState extends State<SplashScreen>
                               color: AppColors.surfaceContainerLowest,
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primary.withValues(alpha: 0.12),
+                                  color: AppColors.primary.withValues(
+                                    alpha: 0.12,
+                                  ),
                                   blurRadius: 36,
                                   spreadRadius: 4,
                                   offset: const Offset(0, 10),
                                 ),
                               ],
                             ),
-                            child: Image.network(
-                              'https://lh3.googleusercontent.com/aida-public/AB6AXuBeNu1b1qSTsmQQ0u7U1sI3FawR_4y_aGOAYPPxfuJzVx_smowB1n_8XuThaBWt41qbXOhI3A-LmMmi2HwJM2ZMSrROsqtwOuspko26sxxbNM2L9hTwCuk-uIDws8au5Cv5LpJwj1x05ivkFVLLPyWUy2LuT4NSa2aQzANfbBXOTme0aNfxjD6KTbtEdSK0tqtXsA7AWZ7qHmkO_NL8cod56UJ3mz1HFcbDWfrTDq7jyLSUbkpDDaHLABdlgUHer0Dm4YM',
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(
-                                Icons.volunteer_activism_rounded,
-                                size: 80,
-                                color: AppColors.primary,
+                            child: ClipOval(
+                              child: Image.asset(
+                                'assets/images/kopia.png',
+                                fit: BoxFit.contain,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(
+                                      Icons.volunteer_activism_rounded,
+                                      size: 80,
+                                      color: AppColors.primary,
+                                    ),
                               ),
                             ),
                           ),
@@ -194,7 +198,9 @@ class _SplashScreenState extends State<SplashScreen>
                             backgroundColor: AppColors.primary,
                             foregroundColor: AppColors.onPrimary,
                             elevation: 4,
-                            shadowColor: AppColors.primary.withValues(alpha: 0.3),
+                            shadowColor: AppColors.primary.withValues(
+                              alpha: 0.3,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28),
                             ),

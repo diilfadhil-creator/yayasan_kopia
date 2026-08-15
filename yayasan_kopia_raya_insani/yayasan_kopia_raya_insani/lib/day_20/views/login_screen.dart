@@ -64,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-                'Email atau kata sandi salah! Silakan daftar jika belum punya akun.'),
+              'Email atau kata sandi salah! Silakan daftar jika belum punya akun.',
+            ),
             backgroundColor: AppColors.error,
           ),
         );
@@ -110,14 +111,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      child: Image.network(
-                        'https://lh3.googleusercontent.com/aida-public/AB6AXuBeNu1b1qSTsmQQ0u7U1sI3FawR_4y_aGOAYPPxfuJzVx_smowB1n_8XuThaBWt41qbXOhI3A-LmMmi2HwJM2ZMSrROsqtwOuspko26sxxbNM2L9hTwCuk-uIDws8au5Cv5LpJwj1x05ivkFVLLPyWUy2LuT4NSa2aQzANfbBXOTme0aNfxjD6KTbtEdSK0tqtXsA7AWZ7qHmkO_NL8cod56UJ3mz1HFcbDWfrTDq7jyLSUbkpDDaHLABdlgUHer0Dm4YM',
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(
-                          Icons.volunteer_activism_rounded,
-                          size: 48,
-                          color: AppColors.primary,
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/images/kopia.png',
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(
+                                Icons.volunteer_activism_rounded,
+                                size: 48,
+                                color: AppColors.primary,
+                              ),
                         ),
                       ),
                     ),
@@ -206,7 +209,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(
-                                  'Fitur reset kata sandi dikirim ke email anda'),
+                                'Fitur reset kata sandi dikirim ke email anda',
+                              ),
                             ),
                           );
                         },
@@ -257,8 +261,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   const SizedBox(width: 8),
-                                  const Icon(Icons.arrow_forward_rounded,
-                                      size: 20),
+                                  const Icon(
+                                    Icons.arrow_forward_rounded,
+                                    size: 20,
+                                  ),
                                 ],
                               ),
                       ),
@@ -270,10 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Belum punya akun? ',
-                          style: AppStyles.bodyMedium,
-                        ),
+                        Text('Belum punya akun? ', style: AppStyles.bodyMedium),
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
